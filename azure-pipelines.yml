@@ -21,5 +21,5 @@ steps:
     command: login
 - script: docker build -f DockerTest/Dockerfile -t $(imageName) .
   displayName: 'docker build'
-- script: docker push $(dockerId)/$(imageName)
+- script: docker push samekrille/$(imageName)
   displayName: 'docker push'
