@@ -10,7 +10,7 @@ pool:
   vmImage: 'Ubuntu-16.04'
 
 variables:
-  imageName: 'dockertest:$(build.buildId)'
+  imageName: '$(dockerId)/dockertest:$(build.buildId)'
 
 steps:
 - task: Docker@1
@@ -21,5 +21,5 @@ steps:
     command: login
 - script: docker build -f DockerTest/Dockerfile -t $(imageName) .
   displayName: 'docker build'
-- script: docker push samekrille/$(imageName)
+- script: docker push $(imageName)
   displayName: 'docker push'
