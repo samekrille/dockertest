@@ -10,8 +10,10 @@ namespace DockerTest.Controllers
         [HttpGet]
         public ActionResult<string> Get()
         {
-            return Environment.GetEnvironmentVariable("COMPUTERNAME") ??
-                   Environment.GetEnvironmentVariable("HOSTNAME");
+            var host =
+                Environment.GetEnvironmentVariable("COMPUTERNAME") ??
+                Environment.GetEnvironmentVariable("HOSTNAME");
+            return $"Host. {host}";
         }
 
     }
