@@ -13,9 +13,13 @@ variables:
   imageName: 'dockertest:$(build.buildId)'
 
 steps:
+- task: Docker@1
+  displayName: Login
+  inputs:
+    containerregistrytype: 'Container Registry'
+    dockerRegistryEndpoint: 'samekrille dockerhub'
+    command: login
 - script: docker build -f DockerTest/Dockerfile -t $(imageName) .
   displayName: 'docker build'
-- script: docker login -u $(dockerId) -p $(dockerPassword)
-  displayName: 'docker login'
 - script: docker push $(dockerId)/$(imageName)
   displayName: 'docker push'
