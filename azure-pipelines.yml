@@ -30,3 +30,5 @@ steps:
   inputs:
     command: package
     chartPath: DockerTest/charts/dockertest
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: drop'
