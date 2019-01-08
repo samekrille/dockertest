@@ -20,14 +20,15 @@ steps:
     dockerRegistryEndpoint: 'samekrille dockerhub'
     command: login
 - script: docker build -f DockerTest/Dockerfile -t $(imageName)-test --target test .
-  displayName: 'docker build for test'
-- script: id=$(docker run -dit $(imageName)-test); docker cp $id:/src/Business.Test/TestResults/TestResult.trx $(System.DefaultWorkingDirectory)
   displayName: 'docker build and run test'
+- script: >
+    id=$(docker run -dit $(imageName)-test); 
+    docker cp $id:/src/Business.Test/TestResults/TestResult.trx $(System.DefaultWorkingDirectory)
+  displayName: 'extract test results'
 - task: PublishTestResults@2
   inputs:
-    testRunner: 'NUnit'
-    testResultsFiles: '**/*.trx' 
-    #searchFolder: '$(System.DefaultWorkingDirectory)' # Optional
+    testRunner: 'VSTest'
+    testResultsFiles: '**/*.trx'
     #mergeTestResults: false # Optional
     #testRunTitle: # Optional
     #buildPlatform: # Optional
