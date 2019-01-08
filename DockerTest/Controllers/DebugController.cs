@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
+using Business;
 
 namespace DockerTest.Controllers
 {
@@ -7,13 +8,18 @@ namespace DockerTest.Controllers
     [ApiController]
     public class DebugController : ControllerBase
     {
+        private readonly ISomeService _service;
+
+        public DebugController(ISomeService service)
+        {
+            _service = service;
+        }
+
         [HttpGet]
         public ActionResult<string> Get()
         {
-            var host =
-                Environment.GetEnvironmentVariable("COMPUTERNAME") ??
-                Environment.GetEnvironmentVariable("HOSTNAME");
-            return $"Host. {host}";
+            var host = _service.GetHostName();
+            return $"Host: {host}";
         }
 
     }
