@@ -16,12 +16,9 @@ RUN dotnet build DockerTest.csproj -c Release -o /app --no-restore
 
 FROM build as test
 WORKDIR /src
-RUN mkdir /testresult
-RUN dotnet test --logger "trx;LogFileName=TestResult.trx" --no-restore; \
-	echo $? > /testresult/passorfail
+ENTRYPOINT ["dotnet", "test", "--logger:trx", "--no-restore", "--results-directory:/TestResults/"]
 
 FROM test AS publish
-RUN testresult=$(cat /testresult/passorfail);if [ 0 -eq $testresult ]; then echo "Tests passed, continuing" >&2; else echo "Tests failed, aborting build" >&2; exit 1 >&2; fi
 WORKDIR /src/DockerTest
 RUN dotnet publish DockerTest.csproj -c Release -o /app --no-restore
 
