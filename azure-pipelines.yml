@@ -19,7 +19,7 @@ steps:
     containerregistrytype: 'Container Registry'
     dockerRegistryEndpoint: 'samekrille dockerhub'
     command: login
-- script: docker build -f DockerTest/Dockerfile -t $(imageName)-test --target test .
+- script: docker build -t $(imageName)-test --target test .
   displayName: 'docker build and run test'
 - script: >
     id=$(docker run -dit $(imageName)-test); 
@@ -29,12 +29,7 @@ steps:
   inputs:
     testRunner: 'VSTest'
     testResultsFiles: '**/*.trx'
-    #mergeTestResults: false # Optional
-    #testRunTitle: # Optional
-    #buildPlatform: # Optional
-    #buildConfiguration: # Optional
-    #publishRunAttachments: true # Optional
-- script: docker build -f DockerTest/Dockerfile -t $(imageName) .
+- script: docker build -t $(imageName) .
   displayName: 'docker build final'
 - script: docker push $(imageName)
   displayName: 'docker push'
