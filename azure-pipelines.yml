@@ -21,10 +21,8 @@ steps:
     command: login
 - script: docker build -t $(imageName)-test --target test .
   displayName: 'docker build and run test'
-- script: >
-    id=$(docker run -dit $(imageName)-test); 
-    docker cp $id:/src/Business.Test/TestResults/TestResult.trx $(System.DefaultWorkingDirectory)
-  displayName: 'extract test results'
+- script:  docker run --mount type=bind,src=$(System.DefaultWorkingDirectory),dst=/TestResults/ dockertest:dev-test --rm
+  displayName: 'run unit tests'
 - task: PublishTestResults@2
   inputs:
     testRunner: 'VSTest'
