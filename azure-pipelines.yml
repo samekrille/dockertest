@@ -14,15 +14,17 @@ variables:
 
 steps:
 - task: Docker@1
-  displayName: Login
+  displayName: Docker login
   inputs:
     containerregistrytype: 'Container Registry'
     dockerRegistryEndpoint: 'samekrille dockerhub'
     command: login
 - script: docker build -t $(imageName)-test --target test .
-  displayName: 'docker build and run test'
-#- script:  docker run --mount type=bind,src=$(System.DefaultWorkingDirectory),dst=/TestResults/ $(imageName)-test --rm
-- script:  docker run --mount type=bind,src=$(System.DefaultWorkingDirectory),dst=/TestResults/ $(imageName)-test
+  displayName: 'docker build to target test'
+- script: echo $(System.DefaultWorkingDirectory)
+  displayName: 'debug step'
+- script:  docker run --mount type=bind,src=$(System.DefaultWorkingDirectory),dst=/TestResults/ $(imageName)-test --rm
+#- script:  docker run --mount type=bind,src=$(System.DefaultWorkingDirectory),dst=/TestResults/ $(imageName)-test
   displayName: 'run unit tests'
 - task: PublishTestResults@2
   inputs:
