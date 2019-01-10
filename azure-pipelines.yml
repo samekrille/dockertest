@@ -21,19 +21,12 @@ steps:
     command: login
 - script: docker build -t $(imageName)-test --target test .
   displayName: 'docker build to target test'
-- script: echo $(System.DefaultWorkingDirectory) \
-          & echo $(pwd) \
-          & echo $(whoami)
-  displayName: 'debug step'
-#- script:  docker run --rm -v /TestResults/:/TestResults/ $(imageName)-test
-#- script:  docker run --rm --mount type=bind,src=$(pwd),dst=/TestResults/ $(imageName)-test
 - script:  docker run --rm -v /var/dockershared/$(build.buildId):/TestResults/ $(imageName)-test
-#- script:  docker run --mount type=bind,src=$(System.DefaultWorkingDirectory),dst=/TestResults/ $(imageName)-test
   displayName: 'run unit tests'
 - task: PublishTestResults@2
   inputs:
     testRunner: 'VSTest'
-    testResultsFiles: '/var/dockershared/$build.buildId/**/*.trx'
+    testResultsFiles: '/var/dockershared/$(build.buildId)/**/*.trx'
 - script: docker build -t $(imageName) .
   displayName: 'docker build final'
 - script: docker push $(imageName)
