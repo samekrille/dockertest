@@ -24,8 +24,8 @@ steps:
 - script: echo $(System.DefaultWorkingDirectory) \
           & echo $(pwd)
   displayName: 'debug step'
-- script:  docker run --rm -v .:/TestResults/ $(imageName)-test
-#- script:  docker run --rm --mount type=bind,src=$(System.DefaultWorkingDirectory),dst=/TestResults/ $(imageName)-test
+#- script:  docker run --rm -v /TestResults/:/TestResults/ $(imageName)-test
+- script:  docker run --rm --mount type=bind,src=/TestResults/,dst=/TestResults/ $(imageName)-test
 #- script:  docker run --mount type=bind,src=$(System.DefaultWorkingDirectory),dst=/TestResults/ $(imageName)-test
   displayName: 'run unit tests'
 - task: PublishTestResults@2
