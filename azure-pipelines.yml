@@ -21,7 +21,8 @@ steps:
     command: login
 - script: docker build -t $(imageName)-test --target test .
   displayName: 'docker build to target test'
-- script: echo $(System.DefaultWorkingDirectory)
+- script: echo $(System.DefaultWorkingDirectory) \
+          & echo $(pwd)
   displayName: 'debug step'
 - script:  docker run --mount type=bind,src=$(System.DefaultWorkingDirectory),dst=/TestResults/ $(imageName)-test --rm
 #- script:  docker run --mount type=bind,src=$(System.DefaultWorkingDirectory),dst=/TestResults/ $(imageName)-test
