@@ -27,6 +27,8 @@ steps:
   inputs:
     testRunner: 'VSTest'
     testResultsFiles: '/var/dockershared/$(build.buildId)/**/*.trx'
+- script:  rm -r /var/dockershared/$(build.buildId)
+  displayName: 'cleanup test results from host'
 - script: docker build -t $(imageName) .
   displayName: 'docker build final'
 - script: docker push $(imageName)
