@@ -4,23 +4,39 @@ EXPOSE 80
 EXPOSE 443
 
 FROM microsoft/dotnet:2.1-sdk AS build
-WORKDIR /src
+# Required project structure:
+# -X.sln
+# -src
+# --A
+# ---A.csproj
+# -tests
+# --B
+# ---B.csproj
+
+WORKDIR /sln
 COPY *.sln .
-COPY DockerTest/DockerTest.csproj DockerTest/
-COPY Business/Business.csproj Business/
-COPY Business.Test/Business.Test.csproj Business.Test/
+
+# Copy src project files
+COPY src/*/*.csproj ./
+RUN for file in $(ls *.csproj); do mkdir -p src/${file%.*}/ && mv $file src/${file%.*}/; done
+
+# Copy test project files
+COPY tests/*/*.csproj ./
+RUN for file in $(ls *.csproj); do mkdir -p tests/${file%.*}/ && mv $file tests/${file%.*}/; done
+
 RUN dotnet restore
+
 COPY . .
-WORKDIR /src/DockerTest
-RUN dotnet build DockerTest.csproj -c Release -o /app --no-restore
+WORKDIR /sln
+RUN dotnet build -c Release --no-restore
 
 FROM build as test
-WORKDIR /src
-ENTRYPOINT ["dotnet", "test", "--logger:trx", "--no-restore", "--results-directory:/TestResults/"]
+WORKDIR /sln
+ENTRYPOINT ["dotnet", "test", "--logger:trx", "--no-build", "-c:Release", "--results-directory:/TestResults/"]
 
 FROM test AS publish
-WORKDIR /src/DockerTest
-RUN dotnet publish DockerTest.csproj -c Release -o /app --no-restore
+WORKDIR /sln/src/DockerTest
+RUN dotnet publish DockerTest.csproj -c Release -o /app --no-build
 
 FROM base AS final
 WORKDIR /app
