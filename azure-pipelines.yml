@@ -19,7 +19,7 @@ steps:
     containerregistrytype: 'Container Registry'
     dockerRegistryEndpoint: 'samekrille dockerhub'
     command: login
-- script: docker build -t $(imageName)-test --target test .
+- script: docker build -f /src/$(mainProjectName)/Dockerfile -t $(imageName)-test --target test --build-arg MAIN_PROJECT_NAME=$(mainProjectName) .
   displayName: 'docker build to target test'
 - script:  docker run --rm -v /var/dockershared/$(build.buildId):/TestResults/ $(imageName)-test
   displayName: 'run unit tests'
@@ -29,7 +29,7 @@ steps:
     testResultsFiles: '/var/dockershared/$(build.buildId)/**/*.trx'
 - script:  rm -r /var/dockershared/$(build.buildId)
   displayName: 'cleanup test results from host'
-- script: docker build -t $(imageName) .
+- script: docker build  -f /src/$(mainProjectName)/Dockerfile -t $(imageName) --build-arg MAIN_PROJECT_NAME=$(mainProjectName) .
   displayName: 'docker build final'
 - script: docker push $(imageName)
   displayName: 'docker push'
@@ -39,6 +39,6 @@ steps:
   displayName: 'helm package'
   inputs:
     command: package
-    chartPath: src/Main/charts/dockertest
+    chartPath: src/$(mainProjectName)/charts/dockertest
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: drop'

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 
 namespace Business
 {
@@ -10,5 +11,8 @@ namespace Business
 
         public string GetMainProjectName() =>
             Environment.GetEnvironmentVariable("MAIN_PROJECT_NAME");
+
+        public IDictionary GetAllEnvironmentVariables() =>
+            Environment.GetEnvironmentVariables();
     }
 }

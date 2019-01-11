@@ -20,7 +20,8 @@ namespace Main.Controllers
             return new
             {
                 Host = _service.GetHostName(),
-                MainProject = _service.GetMainProjectName()
+                MainProject = _service.GetMainProjectName(),
+                All = _service.GetAllEnvironmentVariables()
             };
         }
     }

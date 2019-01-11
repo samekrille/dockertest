@@ -3,15 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.106
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Main", "src\Main\Main.csproj", "{B7193FCC-EAC4-4F98-9809-033EEDEFD879}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Business", "src\Business\Business.csproj", "{9FC1AB98-DF1A-429C-B1AF-6BC1FFA17B53}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Business.Test", "test\Business.Test\Business.Test.csproj", "{CEA6EEB2-41C2-4FB8-968B-1527259D643D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0B0AB91A-EDB1-4AC8-BC22-FA95DF211A49}"
 	ProjectSection(SolutionItems) = preProject
-		Dockerfile = Dockerfile
+		azure-pipelines.yml = azure-pipelines.yml
+		Dockerfile.bak = Dockerfile.bak
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A2725DE2-13B7-4498-A25B-5B4E839BA5AC}"
@@ -20,16 +19,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{C35D64BE-C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SecondTestProject.Test", "test\SecondTestProject.Test\SecondTestProject.Test.csproj", "{9DAFAAE5-8E2F-4401-9717-7EFD492C21DB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MainApp", "src\MainApp\MainApp.csproj", "{F332F6DC-780C-4612-A083-A36ACB13625F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B7193FCC-EAC4-4F98-9809-033EEDEFD879}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B7193FCC-EAC4-4F98-9809-033EEDEFD879}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B7193FCC-EAC4-4F98-9809-033EEDEFD879}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B7193FCC-EAC4-4F98-9809-033EEDEFD879}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9FC1AB98-DF1A-429C-B1AF-6BC1FFA17B53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9FC1AB98-DF1A-429C-B1AF-6BC1FFA17B53}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9FC1AB98-DF1A-429C-B1AF-6BC1FFA17B53}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -42,15 +39,19 @@ Global
 		{9DAFAAE5-8E2F-4401-9717-7EFD492C21DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9DAFAAE5-8E2F-4401-9717-7EFD492C21DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9DAFAAE5-8E2F-4401-9717-7EFD492C21DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F332F6DC-780C-4612-A083-A36ACB13625F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F332F6DC-780C-4612-A083-A36ACB13625F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F332F6DC-780C-4612-A083-A36ACB13625F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F332F6DC-780C-4612-A083-A36ACB13625F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{B7193FCC-EAC4-4F98-9809-033EEDEFD879} = {A2725DE2-13B7-4498-A25B-5B4E839BA5AC}
 		{9FC1AB98-DF1A-429C-B1AF-6BC1FFA17B53} = {A2725DE2-13B7-4498-A25B-5B4E839BA5AC}
 		{CEA6EEB2-41C2-4FB8-968B-1527259D643D} = {C35D64BE-CF84-4807-9CF9-CF324603D635}
 		{9DAFAAE5-8E2F-4401-9717-7EFD492C21DB} = {C35D64BE-CF84-4807-9CF9-CF324603D635}
+		{F332F6DC-780C-4612-A083-A36ACB13625F} = {A2725DE2-13B7-4498-A25B-5B4E839BA5AC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B53B9A01-62E7-4ED7-ABDE-7867A62E10A4}
