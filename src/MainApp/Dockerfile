@@ -1,5 +1,4 @@
 FROM microsoft/dotnet:2.1-aspnetcore-runtime AS base
-RUN echo TEST3 TEST3 TEST3
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
