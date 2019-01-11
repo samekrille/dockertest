@@ -19,7 +19,7 @@ namespace DockerTest.Controllers
         public ActionResult<string> Get()
         {
             var host = _service.GetHostName();
-            return $"Host: {host}";
+            return $"Host is: {host}";
         }
 
     }
