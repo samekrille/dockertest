@@ -9,7 +9,7 @@ FROM microsoft/dotnet:2.1-sdk AS build
 # -src
 # --A
 # ---A.csproj
-# -tests
+# -test
 # --B
 # ---B.csproj
 
@@ -21,8 +21,8 @@ COPY src/*/*.csproj ./
 RUN for file in $(ls *.csproj); do mkdir -p src/${file%.*}/ && mv $file src/${file%.*}/; done
 
 # Copy test project files
-COPY tests/*/*.csproj ./
-RUN for file in $(ls *.csproj); do mkdir -p tests/${file%.*}/ && mv $file tests/${file%.*}/; done
+COPY test/*/*.csproj ./
+RUN for file in $(ls *.csproj); do mkdir -p test/${file%.*}/ && mv $file test/${file%.*}/; done
 
 RUN dotnet restore
 

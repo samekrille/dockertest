@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DockerTest", "src\DockerTes
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Business", "src\Business\Business.csproj", "{9FC1AB98-DF1A-429C-B1AF-6BC1FFA17B53}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Business.Test", "tests\Business.Test\Business.Test.csproj", "{CEA6EEB2-41C2-4FB8-968B-1527259D643D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Business.Test", "test\Business.Test\Business.Test.csproj", "{CEA6EEB2-41C2-4FB8-968B-1527259D643D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0B0AB91A-EDB1-4AC8-BC22-FA95DF211A49}"
 	ProjectSection(SolutionItems) = preProject
@@ -16,9 +16,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A2725DE2-13B7-4498-A25B-5B4E839BA5AC}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{C35D64BE-CF84-4807-9CF9-CF324603D635}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{C35D64BE-CF84-4807-9CF9-CF324603D635}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecondTestProject.Test", "tests\SecondTestProject.Test\SecondTestProject.Test.csproj", "{9DAFAAE5-8E2F-4401-9717-7EFD492C21DB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecondTestProject.Test", "test\SecondTestProject.Test\SecondTestProject.Test.csproj", "{9DAFAAE5-8E2F-4401-9717-7EFD492C21DB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
