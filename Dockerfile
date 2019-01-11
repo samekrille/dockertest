@@ -35,10 +35,12 @@ WORKDIR /sln
 ENTRYPOINT ["dotnet", "test", "--logger:trx", "--no-build", "-c:Release", "--results-directory:/TestResults/"]
 
 FROM test AS publish
-WORKDIR /sln/src/Main
-RUN dotnet publish Main.csproj -c Release -o /app --no-build
+ARG MAIN_PROJECT_NAME=Main
+RUN dotnet publish /sln/src/$MAIN_PROJECT_NAME/$MAIN_PROJECT_NAME.csproj -c Release -o /app --no-build
 
 FROM base AS final
+ARG MAIN_PROJECT_NAME=Main
+ENV MAIN_PROJECT_NAME=$MAIN_PROJECT_NAME
 WORKDIR /app
 COPY --from=publish /app .
-ENTRYPOINT ["dotnet", "Main.dll"]
+ENTRYPOINT dotnet $MAIN_PROJECT_NAME.dll

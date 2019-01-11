@@ -1,8 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using Business;
+﻿using Business;
+using Microsoft.AspNetCore.Mvc;
 
-namespace DockerTest.Controllers
+namespace Main.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -16,11 +15,13 @@ namespace DockerTest.Controllers
         }
 
         [HttpGet]
-        public ActionResult<string> Get()
+        public ActionResult<object> Get()
         {
-            var host = _service.GetHostName();
-            return $"Host is: {host}";
+            return new
+            {
+                Host = _service.GetHostName(),
+                MainProject = _service.GetMainProjectName()
+            };
         }
-
     }
 }

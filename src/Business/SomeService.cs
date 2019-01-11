@@ -7,5 +7,8 @@ namespace Business
         public string GetHostName() => 
             Environment.GetEnvironmentVariable("COMPUTERNAME") ??
             Environment.GetEnvironmentVariable("HOSTNAME");
+
+        public string GetMainProjectName() =>
+            Environment.GetEnvironmentVariable("MAIN_PROJECT_NAME");
     }
 }
