@@ -7,28 +7,28 @@ trigger:
 - master
 
 pool:
-  vmImage: 'Ubuntu-16.04'
+  name: HostedByMe
 
 variables:
   imageName: '$(dockerId)/dockertest:$(build.buildId)'
 
 steps:
 - task: Docker@1
-  displayName: Login
+  displayName: Docker login
   inputs:
     containerregistrytype: 'Container Registry'
     dockerRegistryEndpoint: 'samekrille dockerhub'
     command: login
 - script: docker build -t $(imageName)-test --target test .
-  displayName: 'docker build and run test'
-- script: >
-    id=$(docker run -dit $(imageName)-test); 
-    docker cp $id:/src/Business.Test/TestResults/TestResult.trx $(System.DefaultWorkingDirectory)
-  displayName: 'extract test results'
+  displayName: 'docker build to target test'
+- script:  docker run --rm -v /var/dockershared/$(build.buildId):/TestResults/ $(imageName)-test
+  displayName: 'run unit tests'
 - task: PublishTestResults@2
   inputs:
     testRunner: 'VSTest'
-    testResultsFiles: '**/*.trx'
+    testResultsFiles: '/var/dockershared/$(build.buildId)/**/*.trx'
+- script:  rm -r /var/dockershared/$(build.buildId)
+  displayName: 'cleanup test results from host'
 - script: docker build -t $(imageName) .
   displayName: 'docker build final'
 - script: docker push $(imageName)
