@@ -35,10 +35,10 @@ WORKDIR /sln
 ENTRYPOINT ["dotnet", "test", "--logger:trx", "--no-build", "-c:Release", "--results-directory:/TestResults/"]
 
 FROM test AS publish
-WORKDIR /sln/src/DockerTest
-RUN dotnet publish DockerTest.csproj -c Release -o /app --no-build
+WORKDIR /sln/src/Main
+RUN dotnet publish Main.csproj -c Release -o /app --no-build
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
-ENTRYPOINT ["dotnet", "DockerTest.dll"]
+ENTRYPOINT ["dotnet", "Main.dll"]

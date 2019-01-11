@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.106
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DockerTest", "src\DockerTest\DockerTest.csproj", "{B7193FCC-EAC4-4F98-9809-033EEDEFD879}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Main", "src\Main\Main.csproj", "{B7193FCC-EAC4-4F98-9809-033EEDEFD879}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Business", "src\Business\Business.csproj", "{9FC1AB98-DF1A-429C-B1AF-6BC1FFA17B53}"
 EndProject
@@ -18,7 +18,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A2725DE2-13B
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{C35D64BE-CF84-4807-9CF9-CF324603D635}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecondTestProject.Test", "test\SecondTestProject.Test\SecondTestProject.Test.csproj", "{9DAFAAE5-8E2F-4401-9717-7EFD492C21DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SecondTestProject.Test", "test\SecondTestProject.Test\SecondTestProject.Test.csproj", "{9DAFAAE5-8E2F-4401-9717-7EFD492C21DB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -39,6 +39,6 @@ steps:
   displayName: 'helm package'
   inputs:
     command: package
-    chartPath: src/DockerTest/charts/dockertest
+    chartPath: src/Main/charts/dockertest
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: drop'
