@@ -33,8 +33,8 @@ ingress:
      - krisam-dockertest.westeurope.cloudapp.azure.com
   tls: []
      - secretName: tls-secret
-       hosts:
-         - krisam-dockertest.westeurope.cloudapp.azure.com
+	 - hosts:
+			- krisam-dockertest.westeurope.cloudapp.azure.com
 secrets: {}
   # Optionally specify a set of secret objects whose values
   # will be injected as environment variables by default.
