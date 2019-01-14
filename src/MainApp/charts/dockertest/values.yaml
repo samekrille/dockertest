@@ -22,17 +22,19 @@ probes:
   enabled: false
 
 ingress:
-  enabled: false
+  enabled: true
   annotations:
-    kubernetes.io/ingress.class: addon-http-application-routing
+    kubernetes.io/ingress.class: nginx
+    certmanager.k8s.io/cluster-issuer: letsencrypt-staging
+    nginx.ingress.kubernetes.io/rewrite-target: /
     # kubernetes.io/tls-acme: "true"
-  path: /
+  path: /dockertest
   # hosts:
-  #   - chart-example.local
+     - krisam-dockertest.westeurope.cloudapp.azure.com
   tls: []
-    # - secretName: chart-example-tls
-    #   hosts:
-    #     - chart-example.local
+     - secretName: tls-secret
+       hosts:
+         - krisam-dockertest.westeurope.cloudapp.azure.com
 secrets: {}
   # Optionally specify a set of secret objects whose values
   # will be injected as environment variables by default.
