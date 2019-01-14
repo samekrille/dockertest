@@ -31,9 +31,9 @@ ingress:
   path: /dockertest
   hosts:
      - krisam-dockertest.westeurope.cloudapp.azure.com
-  tls: []
+  tls: 
      - secretName: tls-secret
-	 - hosts:
+		hosts:
 			- krisam-dockertest.westeurope.cloudapp.azure.com
 secrets: {}
   # Optionally specify a set of secret objects whose values
