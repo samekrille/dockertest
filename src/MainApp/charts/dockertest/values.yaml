@@ -29,7 +29,7 @@ ingress:
     nginx.ingress.kubernetes.io/rewrite-target: /
     # kubernetes.io/tls-acme: "true"
   path: /dockertest
-  # hosts:
+  hosts:
      - krisam-dockertest.westeurope.cloudapp.azure.com
   tls: []
      - secretName: tls-secret
